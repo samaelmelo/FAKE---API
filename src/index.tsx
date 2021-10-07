@@ -1,8 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {App} from './App';
+import {createServer} from "miragejs"
+
+createServer({
+  routes(){
+    this.namespace = 'api'
+
+    this.get('/rooms' , () => {
+      return[
+        {sala: 200, professor: 'Duany Bruna', aula: 'Canto'},
+        {sala: 212, professor: 'Diogo Navia', aula: 'Flauta Transaversal'},
+        {sala: 219, professor: 'Fabio Carmo', aula: 'Trombone'},
+        {sala: 232, professor: 'Nicolas Ribeiro', aula: 'Trompete'},
+      ]
+    })
+  }
+})
+
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,7 +27,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
